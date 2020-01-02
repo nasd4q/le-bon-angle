@@ -1,11 +1,14 @@
 # leBonAngle
 
-Pour l'instant : ébauche de back end API pour le site :
-    * mise en place des routes CRUD + getALl pour l'entité "annonce", qui communiquent avec base SQL
+
+Back end avec routes fonctionelles pour 4 entites : annonce, categorie, utilisateur et photo
 
 A faire (back_end) :
-    * modifier annonce, annonce repo et controller (ainsi que base) afin que 
-    annonce contienne tous les champs requis (voir commentaires dans model/annonce.java)
-    * gérer les entités catégories et auteur
+    * correctement implementer la methode post pour annonce afin de pouvoir y mettre
+    categorie, auteur, photos etc...
+    * correctement implementer les controllers en general
+    * modifier les routes afin d'ameliorer les fonctionalites :
+    ex : ajouter une photo sur une annonce, recuperer toutes les annonces d'un utilisateur etc.
+
 
 PLUS TOUT LE FRONT END...

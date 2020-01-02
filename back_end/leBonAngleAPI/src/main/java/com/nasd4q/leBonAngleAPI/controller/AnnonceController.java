@@ -3,6 +3,7 @@ package com.nasd4q.leBonAngleAPI.controller;
 import com.nasd4q.leBonAngleAPI.repository.AnnonceRepository;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -29,25 +30,25 @@ public class AnnonceController {
     }
 
     @GetMapping("/annonces/{id}")
-    public Annonce getAnnonceById(@PathVariable(value = "id") Long annonceId) throws Exception {
+    public Annonce getAnnonceById(@PathVariable(value = "id") UUID annonceId) throws Exception {
         return annonceRepository.findById(annonceId)
                 .orElseThrow(() -> new Exception("Annonce Not found for id " + annonceId));
     }
 
-    @PutMapping("/annonces/{id}")
-    public Annonce updateAnnonce(@PathVariable(value = "id") Long annonceId, @Valid @RequestBody Annonce annonceDetails)
-            throws Exception {
-        Annonce annonce = annonceRepository.findById(annonceId)
-                .orElseThrow(() -> new Exception("Annonce Not found for id " + annonceId));
-        annonce.setDescription(annonceDetails.getDescription());
-        annonce.setPrix(annonceDetails.getPrix());
-        annonce.setTitre(annonceDetails.getTitre());
-        Annonce updatedAnnonce = annonceRepository.save(annonce);
-        return updatedAnnonce;
-    }
+    // @PutMapping("/annonces/{id}")
+    // public Annonce updateAnnonce(@PathVariable(value = "id") UUID annonceId, @Valid @RequestBody Annonce annonceDetails)
+    //         throws Exception {
+    //     Annonce annonce = annonceRepository.findById(annonceId)
+    //             .orElseThrow(() -> new Exception("Annonce Not found for id " + annonceId));
+    //     annonce.setDescription(annonceDetails.getDescription());
+    //     annonce.setPrix(annonceDetails.getPrix());
+    //     annonce.setTitre(annonceDetails.getTitre());
+    //     Annonce updatedAnnonce = annonceRepository.save(annonce);
+    //     return updatedAnnonce;
+    // }
 
     @DeleteMapping("/annonces/{id}")
-    public ResponseEntity<?> deleteAnnonce(@PathVariable(value = "id") Long annonceId) throws Exception {
+    public ResponseEntity<?> deleteAnnonce(@PathVariable(value = "id") UUID annonceId) throws Exception {
         Annonce annonce = annonceRepository.findById(annonceId)
                 .orElseThrow(() -> new Exception("Annonce Not found for id " + annonceId));
 
