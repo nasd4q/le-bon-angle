@@ -1,22 +1,19 @@
 package com.nasd4q.leBonAngleAPI.controller;
 
+import com.nasd4q.leBonAngleAPI.repository.AnnonceRepository;
 import com.nasd4q.leBonAngleAPI.repository.PhotoRepository;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.UUID;
 
-import javax.validation.Valid;
 
 import com.nasd4q.leBonAngleAPI.exception.ResourceNotFoundException;
+import com.nasd4q.leBonAngleAPI.model.Annonce;
 import com.nasd4q.leBonAngleAPI.model.Photo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +24,8 @@ public class PhotoController {
 
     @Autowired
     PhotoRepository photoRepository;
+    @Autowired
+    AnnonceRepository annonceRepository;
 
     @GetMapping("/photos")
     public List<Photo> getAllPhotos() {
@@ -34,10 +33,13 @@ public class PhotoController {
     }
 
     @PostMapping("/photos")
-    public Photo createPhoto(@RequestParam("titre") String titre, @RequestParam("file") MultipartFile file) 
+    public Photo createPhoto(@RequestParam("titre") String titre, 
+    @RequestParam("file") MultipartFile file, @RequestParam("annonceId") UUID annonceId) 
     throws IOException{
-        Photo photo = new Photo(titre, file.getBytes());
+        Annonce annonce = annonceRepository.findById(annonceId).orElseThrow(()->
+            new ResourceNotFoundException("no annonce found with id " + annonceId.toString()));
 
+        Photo photo = new Photo(titre, file.getBytes(), annonce);
         return photoRepository.save(photo);
     }
 
@@ -47,6 +49,17 @@ public class PhotoController {
         Photo photo = photoRepository.findById(photoId).orElseThrow(
             () -> new ResourceNotFoundException("No photos with id : " + photoId.toString()));
         return photo.getImage();
+    }
+
+    @GetMapping("/photosIdForAnnonce/{id}")
+    public List<UUID> getPhotosIdForAnnonce(@PathVariable(value = "id") UUID annonceId) throws Exception {
+        List<Photo> photos = photoRepository.findByAnnonce_Id(annonceId);
+        List<UUID> photosIds = new ArrayList<>();
+            for (Photo p : photos)
+        {
+            photosIds.add(p.getId());
+        }
+        return photosIds;
     }
 
     @DeleteMapping("/photos/{id}")

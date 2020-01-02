@@ -1,13 +1,18 @@
 package com.nasd4q.leBonAngleAPI.controller;
 
 import com.nasd4q.leBonAngleAPI.repository.AnnonceRepository;
+import com.nasd4q.leBonAngleAPI.repository.CategorieRepository;
+import com.nasd4q.leBonAngleAPI.repository.UtilisateurRepository;
 
 import java.util.List;
 import java.util.UUID;
 
 import javax.validation.Valid;
 
+import com.nasd4q.leBonAngleAPI.exception.ResourceNotFoundException;
 import com.nasd4q.leBonAngleAPI.model.Annonce;
+import com.nasd4q.leBonAngleAPI.model.Categorie;
+import com.nasd4q.leBonAngleAPI.model.Utilisateur;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +23,11 @@ public class AnnonceController {
 
     @Autowired
     AnnonceRepository annonceRepository;
+    @Autowired
+    UtilisateurRepository utilisateurRepository;
+    @Autowired
+    CategorieRepository categorieRepository;
+
 
     @GetMapping("/annonces")
     public List<Annonce> getAllAnnonces() {
@@ -25,7 +35,15 @@ public class AnnonceController {
     }
 
     @PostMapping("/annonces")
-    public Annonce createAnnonce(@Valid @RequestBody Annonce annonce) {
+    public Annonce createAnnonce(@Valid @RequestBody Annonce annonce, 
+    @RequestParam("auteurId") UUID auteurID, @RequestParam("categorieId") UUID categorieId) 
+    throws ResourceNotFoundException{
+        Utilisateur auteur = utilisateurRepository.findById(auteurID).orElseThrow(
+            () -> new ResourceNotFoundException("No utilisateur found with id : " + auteurID.toString()));
+        Categorie categorie = categorieRepository.findById(categorieId).orElseThrow(
+            () -> new ResourceNotFoundException("No categorie found with id : " + categorieId.toString()));
+            annonce.setAuteur(auteur);
+            annonce.setCategorie(categorie);
         return annonceRepository.save(annonce);
     }
 
@@ -33,6 +51,16 @@ public class AnnonceController {
     public Annonce getAnnonceById(@PathVariable(value = "id") UUID annonceId) throws Exception {
         return annonceRepository.findById(annonceId)
                 .orElseThrow(() -> new Exception("Annonce Not found for id " + annonceId));
+    }
+
+    @GetMapping("/annoncesFromAuteur/{id}")
+    public List<Annonce> getAnnonceFromAuteur(@PathVariable(value = "id") UUID auteurId) throws Exception {
+        return annonceRepository.findByAuteur_Id(auteurId);
+    }
+
+    @GetMapping("/annoncesFromCategorie/{id}")
+    public List<Annonce> getAnnonceFromCategorie(@PathVariable(value = "id") UUID categorieId) throws Exception {
+        return annonceRepository.findByCategorie_Id(categorieId);
     }
 
     // @PutMapping("/annonces/{id}")

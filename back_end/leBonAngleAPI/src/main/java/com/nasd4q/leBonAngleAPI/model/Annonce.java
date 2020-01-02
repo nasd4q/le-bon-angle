@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -38,22 +37,20 @@ public class Annonce {
     private Utilisateur auteur;
     @ManyToOne
     private Categorie categorie;
-    @OneToMany( targetEntity=Photo.class )
-    private List photos;
+
 
     public Annonce() {
         super();
     }
 
     public Annonce(String titre, String description, BigDecimal prix, String lieu, Utilisateur auteur,
-            Categorie categorie, List photos) {
+            Categorie categorie) {
         this.titre = titre;
         this.description = description;
         this.prix = prix;
         this.lieu = lieu;
         this.auteur = auteur;
         this.categorie = categorie;
-        this.photos = photos;
     }
 
     public UUID getId() {
@@ -112,12 +109,4 @@ public class Annonce {
         this.categorie = categorie;
     }
 
-    public List getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(List photos) {
-        this.photos = photos;
-    }
-    
 }

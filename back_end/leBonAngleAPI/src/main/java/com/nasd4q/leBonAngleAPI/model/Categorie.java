@@ -1,5 +1,6 @@
 package com.nasd4q.leBonAngleAPI.model;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.*;
@@ -43,4 +44,6 @@ public class Categorie {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
+    
 }

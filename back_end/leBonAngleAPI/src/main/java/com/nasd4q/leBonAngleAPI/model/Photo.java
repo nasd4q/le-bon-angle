@@ -25,14 +25,17 @@ public class Photo {
     private String titre;
     @Lob
     private byte[] image;
+    @ManyToOne
+    private Annonce annonce;
 
     public Photo() {
         super();
     }
 
-    public Photo(String titre, byte[] image) {
+    public Photo(String titre, byte[] image, Annonce annonce) {
         this.titre = titre;
         this.image = image;
+        this.annonce = annonce;
     }
 
     public UUID getId() {
@@ -55,6 +58,11 @@ public class Photo {
         this.image = image;
     }
 
-    
-    
+    public Annonce getAnnonce() {
+        return annonce;
+    }
+
+    public void setAnnonce(Annonce annonce) {
+        this.annonce = annonce;
+    }
 }

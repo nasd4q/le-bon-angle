@@ -1,5 +1,6 @@
 package com.nasd4q.leBonAngleAPI.model;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.*;
@@ -36,31 +37,31 @@ public class Utilisateur {
         this.email = email;
     }
 
-    public UUID getId() {
-        return id;
-    }
+	public UUID getId() {
+		return id;
+	}
 
-    public String getPseudo() {
-        return pseudo;
-    }
+	public String getPseudo() {
+		return pseudo;
+	}
 
-    public void setPseudo(String pseudo) {
-        this.pseudo = pseudo;
-    }
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
 
-    public String getTelephone() {
-        return telephone;
-    }
+	public String getTelephone() {
+		return telephone;
+	}
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }    
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }
