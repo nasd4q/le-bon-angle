@@ -10,6 +10,7 @@ import { DataService } from 'src/service/data.service';
 export class AnnonceComponent implements OnInit {
   @Input() annonce: Annonce;
   @Output() backClicked = new EventEmitter();
+  addingPhoto = false;
 
   constructor(private dataService: DataService) { }
 

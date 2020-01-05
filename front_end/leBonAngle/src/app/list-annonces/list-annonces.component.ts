@@ -12,6 +12,7 @@ export class ListAnnoncesComponent implements OnInit {
   allAnnonces: Annonce[];
   annonces: Annonce[];
   categories: Categorie[];
+  testString : string = "testString of listAnnoncesComponent"
 
   @Output() annonceClicked = new EventEmitter();
   @Output() newAnnonceClicked = new EventEmitter();

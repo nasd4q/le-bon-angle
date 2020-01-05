@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { Annonce } from 'src/model/annonce';
 import { ListAnnoncesComponent } from './list-annonces/list-annonces.component';
 
@@ -7,15 +7,20 @@ import { ListAnnoncesComponent } from './list-annonces/list-annonces.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = 'leBonAngle';
   annonceToShow: Annonce = null;
-  addingNewAnnonce: boolean = false;
-  @ViewChild(ListAnnoncesComponent, {static: true})
-  private list: ListAnnoncesComponent;
+  addingNewAnnonce = false;
+  @ViewChild('list', {static : false})
+  private listC: ListAnnoncesComponent;
 
-  refresh(value:boolean) {
-    console.log(value);
-    this.list.refresh();
+  ngAfterViewInit(): void {
+  }
+
+  refresh(value: boolean) {
+    if (value) {
+      console.log('refreshing list...');
+      setTimeout(()=>this.listC.refresh(),1000);
+    }
   }
 }
