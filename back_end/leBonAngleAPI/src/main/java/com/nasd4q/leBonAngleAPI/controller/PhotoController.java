@@ -34,9 +34,11 @@ public class PhotoController {
     }
 
     @PostMapping("/photos")
-    public Photo createPhoto(@RequestParam("titre") String titre, 
-    @RequestParam("file") MultipartFile file, @RequestParam("annonceId") UUID annonceId) 
+    @CrossOrigin(origins = "http://localhost:4200")
+    public Photo createPhoto(@RequestParam("file") MultipartFile file) 
     throws IOException{
+        UUID annonceId = UUID.fromString("f297a811-33ee-432a-8de1-a6298db261f6");
+        String titre = "Hello";
         Annonce annonce = annonceRepository.findById(annonceId).orElseThrow(()->
             new ResourceNotFoundException("no annonce found with id " + annonceId.toString()));
 

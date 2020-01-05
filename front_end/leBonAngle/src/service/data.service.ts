@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Categorie } from 'src/model/categorie';
 import { Annonce } from 'src/model/annonce';
 import { Utilisateur } from 'src/model/utilisateur';
@@ -49,15 +49,16 @@ export class DataService {
     .then(returnedObj => returnedObj.id.length > 0);
   }
 
-  addPhoto(a: Annonce, titre: string, file: File): Promise<boolean> {
+  addPhoto(a: Annonce, titre: string, file: File): Promise<any> {
     const input = new FormData();
-    input.append('titre', titre);
     input.append('file', file);
-    input.append('annonceId', a.id);
-    return this.http.post<any>(this.url + '/photos', input,
-    {headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data' })})
-    .toPromise()
-    .then(returnedObj => returnedObj.id.length > 0);
+
+    let hd = new HttpHeaders();
+    hd = hd.append('Access-Control-Allow-Origin', 'http://localhost:4200');
+
+    const req = new HttpRequest('POST', this.url + '/photos', input);
+
+    return this.http.request(req).toPromise();
   }
 
   deleteAnnonce(a: Annonce) {
