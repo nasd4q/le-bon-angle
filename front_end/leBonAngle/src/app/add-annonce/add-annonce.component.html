@@ -17,6 +17,18 @@
             <label for="lieu">Lieu</label>
             <input type="text" id="lieu" required>
         </div>
+        <div>
+            <label for="auteur">Auteur</label>
+            <select id="auteur" required>
+            <option *ngFor="let a of auteurs" [value]="a">{{a.pseudo}}</option>
+          </select>
+        </div>
+        <div>
+            <label for="categorie">Catégorie</label>
+            <select id="categorie" required>
+          <option *ngFor="let c of categories" [value]="c">{{c.nom}}</option>
+        </select>
+        </div>
 
 
 
