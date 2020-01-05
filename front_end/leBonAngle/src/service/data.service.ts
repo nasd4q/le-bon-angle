@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Categorie } from 'src/model/categorie';
 import { Annonce } from 'src/model/annonce';
 import { Utilisateur } from 'src/model/utilisateur';
@@ -10,14 +10,6 @@ import { Utilisateur } from 'src/model/utilisateur';
 export class DataService {
   protected url = 'http://localhost:8080';
   constructor(private http: HttpClient) {}
-
-  getCategories(): Promise<Categorie[]> {
-    return this.http.get<any[]>(this.url + '/categories')
-    .toPromise()
-    .then(
-      (value) => value.map(c => new Categorie(c.nom, c.id))
-    );
-  }
 
   getAnnonces(): Promise<Annonce[]> {
     return this.http.get<any[]>(this.url + '/annonces')
@@ -36,5 +28,54 @@ export class DataService {
     );
   }
 
-  postAnnonce(a : Annonce): Promise<Annonce> {}
+  addAnnonce(a: Annonce): Promise<boolean> {
+    return this.http.post<any>(this.url + '/annonces'
+    + '?auteurId=' + a.auteur.id + '&categorieId=' + a.categorie.id,
+    {titre : a.titre, description: a.description, prix : a.prix, lieu : a.lieu, })
+    .toPromise()
+    .then(returnedObj => returnedObj.id.length > 0);
+  }
+
+  addUtilisateur(u: Utilisateur): Promise<boolean> {
+    return this.http.post<any>(this.url + '/utilisateurs',
+    {pseudo : u.pseudo, telephone: u.telephone, email: u.email })
+    .toPromise()
+    .then(returnedObj => returnedObj.id.length > 0);
+  }
+
+  addCategorie(c: Categorie): Promise<boolean> {
+    return this.http.post<any>(this.url + '/categories',
+    {nom : c.nom})
+    .toPromise()
+    .then(returnedObj => returnedObj.id.length > 0);
+  }
+
+  addPhoto(a: Annonce, titre: string, file: File): Promise<boolean> {
+    const input = new FormData();
+    input.append('titre', titre);
+    input.append('file', file);
+    input.append('annonceId', a.id);
+    return this.http.post<any>(this.url + '/photos', input,
+    {headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data' })})
+    .toPromise()
+    .then(returnedObj => returnedObj.id.length > 0);
+  }
+
+  deleteAnnonce(a: Annonce) {
+    this.http.delete(this.url + '/annonces/' + a.id);
+  }
+
+  getPhotosURLForAnnonce(a: Annonce): Promise<string[]> {
+    return this.http.get<any[]>(this.url + '/photosIdForAnnonce/' + a.id)
+    .toPromise()
+    .then(objs => objs.map(id => this.url + '/photos/' + id));
+  }
+
+  getCategories(): Promise<Categorie[]> {
+    return this.http.get<any[]>(this.url + '/categories')
+    .toPromise()
+    .then(
+      (value) => value.map(c => new Categorie(c.nom, c.id))
+    );
+  }
 }
