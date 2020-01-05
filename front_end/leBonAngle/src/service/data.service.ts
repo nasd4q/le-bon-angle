@@ -78,4 +78,12 @@ export class DataService {
       (value) => value.map(c => new Categorie(c.nom, c.id))
     );
   }
+
+  getUtilisateurs(): Promise<Utilisateur[]> {
+    return this.http.get<any[]>(this.url + '/utilisateurs')
+    .toPromise()
+    .then(
+      (value) => value.map(u=> new Utilisateur(u.pseudo, u.telephone, u.email, u.id))
+    );
+  }
 }
