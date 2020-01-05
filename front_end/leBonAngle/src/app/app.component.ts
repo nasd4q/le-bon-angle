@@ -8,5 +8,6 @@ import { Annonce } from 'src/model/annonce';
 })
 export class AppComponent {
   title = 'leBonAngle';
-  annonceToShow: Annonce;
+  annonceToShow: Annonce = null;
+  addingNewAnnonce: boolean = false;
 }

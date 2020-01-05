@@ -1,0 +1,13 @@
+<div class="componentCont">
+    <button (click)="this.backClicked.emit()">Retour</button>
+    <div>Catégorie : {{annonce.categorie.nom}}</div>
+    <img *ngFor="let url of annonce.photosUrl" [src]="url">
+    <div>
+        <h4>{{annonce.titre}}</h4>
+        <div>{{annonce.description}}</div>
+        <div>{{annonce.prix}}</div>
+        <div>{{annonce.lieu}}</div>
+        <div>{{annonce.dateDeCreation}}</div>
+    </div>
+    <app-auteur [auteur]="annonce.auteur"></app-auteur>
+</div>

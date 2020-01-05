@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Utilisateur } from 'src/model/utilisateur';
+import { DataService } from 'src/service/data.service';
 
 @Component({
   selector: 'app-auteur',
@@ -6,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auteur.component.scss']
 })
 export class AuteurComponent implements OnInit {
+  @Input() auteur: Utilisateur;
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
   }

@@ -1,4 +1,9 @@
-<app-list-annonces *ngIf="this.annonceToShow === null" (annonceClicked)="this.annonceToShow=$event">
-</app-list-annonces>
-<app-annonce *ngIf="this.annonceToShow !== null" (backClicked)="this.annonceToShow = null" [annonce]="this.annonceToShow">
-</app-annonce>
+<ng-template *ngIf="!this.addingNewAnnonce">
+    <app-list-annonces *ngIf="this.annonceToShow === null" (annonceClicked)="this.annonceToShow=$event" (newAnnonceClicked)="this.addingNewAnnonce = true">
+    </app-list-annonces>
+    <app-annonce *ngIf="this.annonceToShow !== null" (backClicked)="this.annonceToShow = null" [annonce]="this.annonceToShow">
+    </app-annonce>
+</ng-template>
+<ng-template *ngIf="this.addingNewAnnonce">
+
+</ng-template>
