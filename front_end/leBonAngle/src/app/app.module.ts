@@ -5,10 +5,16 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { DataService } from 'src/service/data.service';
+import { ListAnnoncesComponent } from './list-annonces/list-annonces.component';
+import { AnnonceComponent } from './annonce/annonce.component';
+import { AuteurComponent } from './auteur/auteur.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListAnnoncesComponent,
+    AnnonceComponent,
+    AuteurComponent
   ],
   imports: [
     BrowserModule,
