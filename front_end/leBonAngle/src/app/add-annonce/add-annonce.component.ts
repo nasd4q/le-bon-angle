@@ -42,8 +42,9 @@ export class AddAnnonceComponent implements OnInit {
 
   posterAnnonce() {
     this.dataService.addAnnonce(this.model)
-    .then(resObj=>console.log(JSON.stringify(resObj)));
-    this.backToList.emit(true);
+    .then(resObj=>{
+      console.log(JSON.stringify(resObj));
+      this.backToList.emit(true);});
   }
 
 }

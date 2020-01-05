@@ -11,7 +11,7 @@ export class AddPhotoComponent implements OnInit {
   @Output() backToAnnonce = new EventEmitter();
   @Input() annonce : Annonce;
 
-  modelPhoto = {titre : "", file: null};
+  file: File = null;
 
   constructor(private dataService: DataService) { }
 
@@ -19,8 +19,15 @@ export class AddPhotoComponent implements OnInit {
   }
 
   posterPhoto() {
-    this.dataService.addPhoto(this.annonce, this.modelPhoto.titre, this.modelPhoto.file)
-    .then(resObj=>console.log(resObj));
+    console.log(this.file.size);
+    this.dataService.addPhoto(this.annonce, this.file.name, this.file)
+    .then(resObj=>{console.log(resObj); this.backToAnnonce.emit();});
+  }
+
+  onChange(event) {
+    const files : FileList = event.srcElement.files;
+    this.file = files[0];
+    console.log(this.file.name);
   }
 
 }

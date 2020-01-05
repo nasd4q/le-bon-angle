@@ -51,12 +51,17 @@ export class DataService {
 
   addPhoto(a: Annonce, titre: string, file: File): Promise<any> {
     const input = new FormData();
+    input.append('titre', titre);
     input.append('file', file);
+    input.append('annonceId', a.id);
 
     let hd = new HttpHeaders();
-    hd = hd.append('Access-Control-Allow-Origin', 'http://localhost:4200');
+    hd = hd.append( 'Content-Type', 'multipart/form-data' );
 
-    const req = new HttpRequest('POST', this.url + '/photos', input);
+    const req = new HttpRequest('POST', this.url + '/photos', input, {
+      reportProgress: true,
+      responseType: 'text'
+    });
 
     return this.http.request(req).toPromise();
   }
