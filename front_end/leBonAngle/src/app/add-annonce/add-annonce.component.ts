@@ -12,10 +12,11 @@ import { Annonce } from 'src/model/annonce';
 export class AddAnnonceComponent implements OnInit {
   categories: Categorie[];
   auteurs: Utilisateur[];
+  model: Annonce = new Annonce('','', 0, null,'', null, null,'');
+  itemCreated: string = "Annonce";
 
   @Output() backToList = new EventEmitter();
 
-  model: Annonce = new Annonce("","",0,null,"",null,null,"");
 
   constructor(private dataService: DataService) { }
 
@@ -42,9 +43,14 @@ export class AddAnnonceComponent implements OnInit {
 
   posterAnnonce() {
     this.dataService.addAnnonce(this.model)
-    .then(resObj=>{
+    .then(resObj => {
       console.log(JSON.stringify(resObj));
-      this.backToList.emit(true);});
+      this.backToList.emit(true); });
   }
 
+  categorieOnChange(event) {
+    if (event.target.value.includes("NEW") {
+      this.itemCreated = "Categorie"
+    }
+  }
 }

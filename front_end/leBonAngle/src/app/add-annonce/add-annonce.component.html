@@ -1,39 +1,45 @@
 <div class="componentCont">
-    <h3>Nouvelle annonce</h3>
-    <form #newAnnonceForm="ngForm" (ngSubmit)="posterAnnonce()">
-        <div>
-            <label for="titre">Titre</label>
-            <input type="text" id="titre" required [(ngModel)]="model.titre" name="titre">
-        </div>
-        <div>
-            <label for="description">Description</label>
-            <input type="text" id="description" required [(ngModel)]="model.description" name="description">
-        </div>
-        <div>
-            <label for="prix">Prix</label>
-            <input type="number" id="prix" required [(ngModel)]="model.prix" name="prix">
-        </div>
-        <div>
-            <label for="lieu">Lieu</label>
-            <input type="text" id="lieu" required [(ngModel)]="model.lieu" name="lieu">
-        </div>
-        <div>
-            <label for="auteur">Auteur</label>
-            <select id="auteur" required [(ngModel)]="model.auteur" name="auteur">
+    <ng-container *ngIf="itemCreated==='Annonce'">
+        <h3>Nouvelle annonce</h3>
+        <form #newAnnonceForm="ngForm" (ngSubmit)="posterAnnonce()">
+            <div>
+                <label for="titre">Titre</label>
+                <input type="text" id="titre" required [(ngModel)]="model.titre" name="titre">
+            </div>
+            <div>
+                <label for="description">Description</label>
+                <input type="text" id="description" required [(ngModel)]="model.description" name="description">
+            </div>
+            <div>
+                <label for="prix">Prix</label>
+                <input type="number" id="prix" required [(ngModel)]="model.prix" name="prix">
+            </div>
+            <div>
+                <label for="lieu">Lieu</label>
+                <input type="text" id="lieu" required [(ngModel)]="model.lieu" name="lieu">
+            </div>
+            <div>
+                <label for="auteur">Auteur</label>
+                <select id="auteur" required [(ngModel)]="model.auteur" name="auteur">
             <option *ngFor="let a of auteurs" [ngValue]="a">{{a.pseudo}}</option>
           </select>
-        </div>
-        <div>
-            <label for="categorie">Catégorie</label>
-            <select id="categorie" required [(ngModel)]="model.categorie" name="categorie">
+            </div>
+            <div>
+                <label for="categorie">Catégorie</label>
+                <select id="categorie" required (change)="categorieOnChange($event)" [(ngModel)]="model.categorie" name="categorie">
           <option *ngFor="let c of categories" [ngValue]="c">{{c.nom}}</option>
+          <option [ngValue]="'NEW'">Autre...</option>
         </select>
-        </div>
+            </div>
 
 
 
-        <button type="submit" [disabled]="!newAnnonceForm.form.valid">Publier</button>
+            <button type="submit" [disabled]="!newAnnonceForm.form.valid">Publier</button>
+        </form>
 
+    </ng-container>
+    <ng-container *ngIf="itemCreated==='Categorie'">
 
-    </form>
+    </ng-container>
+
 </div>
