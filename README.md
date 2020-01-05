@@ -1,7 +1,7 @@
 # leBonAngle
 
 
-Back End v1 fini : 
+Back End v1 fini : (démarrer avec mvn spring-boot:run depuis /leBonAngleAPI)
 1. Utilisateurs
     * GET /utilisateurs
     * POST /utilisateurs avec header : content-type = application/json
