@@ -63,7 +63,7 @@ export class AddAnnonceComponent implements OnInit {
   onBackFromAddCategorie(event) {
     this.itemCreated = "Annonce";
     if (event) {
-      setTimeout(this.loadCategories,500);
+      setTimeout(()=>this.loadCategories(true),500);
     }
   }
 
@@ -77,7 +77,7 @@ export class AddAnnonceComponent implements OnInit {
   onBackFromAddAuteur(event) {
     this.itemCreated = "Annonce";
     if (event) {
-      setTimeout(this.loadAuteurs,500);
+      setTimeout(()=>this.loadAuteurs(true),500);
     }
   }
 }

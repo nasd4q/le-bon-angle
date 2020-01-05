@@ -42,5 +42,8 @@
     <ng-container *ngIf="itemCreated==='Categorie'">
         <app-add-categorie (backToAddAnnonce)="onBackFromAddCategorie($event)"></app-add-categorie>
     </ng-container>
+    <ng-container *ngIf="itemCreated==='Auteur'">
+        <app-add-auteur (backToAddAnnonce)="onBackFromAddAuteur($event)"></app-add-auteur>
+    </ng-container>
 
 </div>

@@ -24,8 +24,9 @@ export class AnnonceComponent implements OnInit {
 
   refreshPhotos(doIt: boolean) {
     if (doIt) {
+      setTimeout(()=>
     this.dataService.getPhotosURLForAnnonce(this.annonce).then(urls => {
-      this.annonce.photosUrl = urls; });
+      this.annonce.photosUrl = urls; }),500);
     }
   }
 

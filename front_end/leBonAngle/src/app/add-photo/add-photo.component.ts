@@ -21,7 +21,7 @@ export class AddPhotoComponent implements OnInit {
   posterPhoto() {
     console.log(this.file.size);
     this.dataService.addPhoto(this.annonce, this.file.name, this.file)
-    .then(resObj=>{console.log(resObj); this.backToAnnonce.emit();});
+    .then(resObj=>{console.log(resObj); this.backToAnnonce.emit(true);});
   }
 
   onChange(event) {
