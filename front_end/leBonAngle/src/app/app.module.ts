@@ -9,6 +9,7 @@ import { ListAnnoncesComponent } from './list-annonces/list-annonces.component';
 import { AnnonceComponent } from './annonce/annonce.component';
 import { AuteurComponent } from './auteur/auteur.component';
 import { AddAnnonceComponent } from './add-annonce/add-annonce.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AddAnnonceComponent } from './add-annonce/add-annonce.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
