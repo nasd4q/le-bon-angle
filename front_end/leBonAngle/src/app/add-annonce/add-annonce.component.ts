@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Categorie } from 'src/model/categorie';
 import { Utilisateur } from 'src/model/utilisateur';
 import { DataService } from 'src/service/data.service';
+import { Annonce } from 'src/model/annonce';
 
 @Component({
   selector: 'app-add-annonce',
@@ -11,6 +12,8 @@ import { DataService } from 'src/service/data.service';
 export class AddAnnonceComponent implements OnInit {
   categories: Categorie[];
   auteurs: Utilisateur[];
+
+  model = new Annonce("","",0,null,"",null,null,"");
 
   constructor(private dataService: DataService) { }
 
