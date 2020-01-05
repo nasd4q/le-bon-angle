@@ -3,7 +3,7 @@
     <form>
         <div>
             <label for="titre">Titre</label>
-            <input type="text" id="titre" required>
+            <input type="text" id="titre" required [(ngModel)]="model.titre" name="titre"> TODO: remove this: {{model.titre}}
         </div>
         <div>
             <label for="description">Description</label>

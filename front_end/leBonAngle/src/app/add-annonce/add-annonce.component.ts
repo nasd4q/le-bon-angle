@@ -18,6 +18,8 @@ export class AddAnnonceComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.loadCategories();
+    this.loadAuteurs();
   }
 
   loadCategories() {
