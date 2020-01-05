@@ -10,6 +10,7 @@ import { AnnonceComponent } from './annonce/annonce.component';
 import { AuteurComponent } from './auteur/auteur.component';
 import { AddAnnonceComponent } from './add-annonce/add-annonce.component';
 import { FormsModule } from '@angular/forms';
+import { AddPhotoComponent } from './add-photo/add-photo.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     ListAnnoncesComponent,
     AnnonceComponent,
     AuteurComponent,
-    AddAnnonceComponent
+    AddAnnonceComponent,
+    AddPhotoComponent
   ],
   imports: [
     BrowserModule,

@@ -15,6 +15,6 @@
         <button (click)="this.addingPhoto = true">Ajouter Photo</button>
     </ng-container>
     <ng-container *ngIf="addingPhoto">
-
+        <app-add-photo (backToAnnonce)="this.addingPhoto = false; this.refreshPhotos($event)" [annonce]="annonce"></app-add-photo>
     </ng-container>
 </div>

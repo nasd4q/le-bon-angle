@@ -22,4 +22,11 @@ export class AnnonceComponent implements OnInit {
     this.backClicked.emit(true);
   }
 
+  refreshPhotos(doIt: boolean) {
+    if (doIt) {
+    this.dataService.getPhotosURLForAnnonce(this.annonce).then(urls => {
+      this.annonce.photosUrl = urls; });
+    }
+  }
+
 }
