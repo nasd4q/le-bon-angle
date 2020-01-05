@@ -20,7 +20,7 @@ export class AppComponent implements AfterViewInit {
   refresh(value: boolean) {
     if (value) {
       console.log('refreshing list...');
-      setTimeout(()=>this.listC.refresh(),300);
+      setTimeout(()=>this.listC.refresh(),500);
     }
   }
 }
