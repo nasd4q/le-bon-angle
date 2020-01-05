@@ -23,6 +23,11 @@ export class ListAnnoncesComponent implements OnInit {
     this.loadCategories();
   }
 
+  refresh() {
+    this.loadAnnonces();
+    this.loadCategories();
+  }
+
   loadAnnonces() {
     this.dataService.getAnnonces().then(
       annonces => {

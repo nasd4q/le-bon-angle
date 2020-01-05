@@ -1,5 +1,5 @@
 <div class="componentCont">
-    <button (click)="this.backClicked.emit()">Retour</button>
+    <button (click)="this.backClicked.emit(false)">Retour</button>
     <div>Catégorie : {{annonce.categorie.nom}}</div>
     <img *ngFor="let url of annonce.photosUrl" [src]="url">
     <div>

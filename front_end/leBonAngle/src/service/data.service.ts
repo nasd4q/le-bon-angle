@@ -61,7 +61,8 @@ export class DataService {
   }
 
   deleteAnnonce(a: Annonce) {
-    this.http.delete(this.url + '/annonces/' + a.id);
+    console.log("deleting annonce id" + a.id);
+    return this.http.delete(this.url + '/annonces/' + a.id).toPromise();
   }
 
   getPhotosURLForAnnonce(a: Annonce): Promise<string[]> {

@@ -16,4 +16,9 @@ export class AnnonceComponent implements OnInit {
   ngOnInit() {
   }
 
+  deleteAnnonce() {
+    this.dataService.deleteAnnonce(this.annonce);
+    this.backClicked.emit(true);
+  }
+
 }
