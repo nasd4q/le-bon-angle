@@ -20,16 +20,17 @@
             </div>
             <div>
                 <label for="auteur">Auteur</label>
-                <select id="auteur" required [(ngModel)]="model.auteur" name="auteur">
-            <option *ngFor="let a of auteurs" [ngValue]="a">{{a.pseudo}}</option>
-          </select>
+                <select id="auteur" required (change)="auteurOnChange($event)" [(ngModel)]="model.auteur" name="auteur">
+                  <option *ngFor="let a of auteurs" [ngValue]="a">{{a.pseudo}}</option>
+                  <option [ngValue]="'NEW'">Autre...</option>
+                </select>
             </div>
             <div>
                 <label for="categorie">Catégorie</label>
                 <select id="categorie" required (change)="categorieOnChange($event)" [(ngModel)]="model.categorie" name="categorie">
-          <option *ngFor="let c of categories" [ngValue]="c">{{c.nom}}</option>
-          <option [ngValue]="'NEW'">Autre...</option>
-        </select>
+                  <option *ngFor="let c of categories" [ngValue]="c">{{c.nom}}</option>
+                  <option [ngValue]="'NEW'">Autre...</option>
+                </select>
             </div>
 
 
@@ -39,7 +40,7 @@
 
     </ng-container>
     <ng-container *ngIf="itemCreated==='Categorie'">
-
+        <app-add-categorie (backToAddAnnonce)="onBackFromAddCategorie($event)"></app-add-categorie>
     </ng-container>
 
 </div>

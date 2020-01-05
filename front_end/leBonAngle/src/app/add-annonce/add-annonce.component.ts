@@ -21,24 +21,28 @@ export class AddAnnonceComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.loadCategories();
-    this.loadAuteurs();
+    this.loadCategories(true);
+    this.loadAuteurs(true);
   }
 
-  loadCategories() {
+  loadCategories(doIt : boolean) {
+    if (doIt) {
     this.dataService.getCategories().then(
       categories => {
         this.categories = categories;
       }
     );
+    }
   }
 
-  loadAuteurs() {
+  loadAuteurs(doIt : boolean) {
+    if (doIt) {
     this.dataService.getUtilisateurs().then(
       utilisateurs => {
         this.auteurs = utilisateurs;
       }
     );
+    }
   }
 
   posterAnnonce() {
@@ -49,8 +53,31 @@ export class AddAnnonceComponent implements OnInit {
   }
 
   categorieOnChange(event) {
-    if (event.target.value.includes("NEW") {
-      this.itemCreated = "Categorie"
+    if (event.target.value.includes("NEW")) {
+      this.itemCreated = "Categorie";
+      setTimeout(()=> this.model.categorie = null,500);
+    }
+
+  }
+
+  onBackFromAddCategorie(event) {
+    this.itemCreated = "Annonce";
+    if (event) {
+      setTimeout(this.loadCategories,500);
+    }
+  }
+
+  auteurOnChange(event) {
+    if (event.target.value.includes("NEW")) {
+      this.itemCreated = "Auteur";
+      setTimeout(()=> this.model.auteur = null,500);
+    }
+  }
+
+  onBackFromAddAuteur(event) {
+    this.itemCreated = "Annonce";
+    if (event) {
+      setTimeout(this.loadAuteurs,500);
     }
   }
 }

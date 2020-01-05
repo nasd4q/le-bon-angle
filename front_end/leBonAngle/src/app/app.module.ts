@@ -11,6 +11,8 @@ import { AuteurComponent } from './auteur/auteur.component';
 import { AddAnnonceComponent } from './add-annonce/add-annonce.component';
 import { FormsModule } from '@angular/forms';
 import { AddPhotoComponent } from './add-photo/add-photo.component';
+import { AddCategorieComponent } from './add-categorie/add-categorie.component';
+import { AddAuteurComponent } from './add-auteur/add-auteur.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { AddPhotoComponent } from './add-photo/add-photo.component';
     AnnonceComponent,
     AuteurComponent,
     AddAnnonceComponent,
-    AddPhotoComponent
+    AddPhotoComponent,
+    AddCategorieComponent,
+    AddAuteurComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,18 @@
+<div class="componentCont">
+    <h3>Nouvel Utilisateur</h3>
+    <form #newUtilisateurForm="ngForm" (ngSubmit)="posterAuteur()">
+        <div>
+            <label for="pseudo">Pseudo </label>
+            <input type="text" id="pseudo" [(ngModel)]="modeleAuteur.pseudo" required name="pseudo">
+        </div>
+        <div>
+            <label for="telephone">Téléphone </label>
+            <input type="text" id="telephone" [(ngModel)]="modeleAuteur.telephone" required name="telephone">
+        </div>
+        <div>
+            <label for="email">Email </label>
+            <input type="text" id="email" [(ngModel)]="modeleAuteur.email" required name="email">
+        </div>
+        <button type="submit" [disabled]="!newUtilisateurForm.form.valid">Ajouter</button>
+    </form>
+</div>

@@ -42,11 +42,10 @@ export class DataService {
     .then(returnedObj => returnedObj.id.length > 0);
   }
 
-  addCategorie(c: Categorie): Promise<boolean> {
+  addCategorie(c: Categorie): Promise<any> {
     return this.http.post<any>(this.url + '/categories',
     {nom : c.nom})
-    .toPromise()
-    .then(returnedObj => returnedObj.id.length > 0);
+    .toPromise();
   }
 
   addPhoto(a: Annonce, titre: string, file: File): Promise<any> {
