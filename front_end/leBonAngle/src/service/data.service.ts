@@ -28,12 +28,11 @@ export class DataService {
     );
   }
 
-  addAnnonce(a: Annonce): Promise<boolean> {
+  addAnnonce(a: Annonce): Promise<any> {
     return this.http.post<any>(this.url + '/annonces'
     + '?auteurId=' + a.auteur.id + '&categorieId=' + a.categorie.id,
     {titre : a.titre, description: a.description, prix : a.prix, lieu : a.lieu, })
-    .toPromise()
-    .then(returnedObj => returnedObj.id.length > 0);
+    .toPromise();
   }
 
   addUtilisateur(u: Utilisateur): Promise<boolean> {

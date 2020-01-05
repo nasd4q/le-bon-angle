@@ -1,7 +1,6 @@
 <div class="componentCont">
     <h3>Nouvelle annonce</h3>
-    {{diagnostic}}
-    <form #newAnnonceForm="ngForm">
+    <form #newAnnonceForm="ngForm" (ngSubmit)="posterAnnonce()">
         <div>
             <label for="titre">Titre</label>
             <input type="text" id="titre" required [(ngModel)]="model.titre" name="titre">
@@ -21,19 +20,20 @@
         <div>
             <label for="auteur">Auteur</label>
             <select id="auteur" required [(ngModel)]="model.auteur" name="auteur">
-            <option *ngFor="let a of auteurs" [value]="a">{{a.pseudo}}</option>
+            <option *ngFor="let a of auteurs" [ngValue]="a">{{a.pseudo}}</option>
           </select>
         </div>
         <div>
             <label for="categorie">Catégorie</label>
             <select id="categorie" required [(ngModel)]="model.categorie" name="categorie">
-          <option *ngFor="let c of categories" [value]="c">{{c.nom}}</option>
+          <option *ngFor="let c of categories" [ngValue]="c">{{c.nom}}</option>
         </select>
         </div>
 
 
 
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="submit" [disabled]="!newAnnonceForm.form.valid">Publier</button>
+
 
     </form>
 </div>

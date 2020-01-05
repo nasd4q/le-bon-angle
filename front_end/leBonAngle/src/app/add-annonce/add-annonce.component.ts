@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Categorie } from 'src/model/categorie';
 import { Utilisateur } from 'src/model/utilisateur';
 import { DataService } from 'src/service/data.service';
@@ -13,7 +13,9 @@ export class AddAnnonceComponent implements OnInit {
   categories: Categorie[];
   auteurs: Utilisateur[];
 
-  model = new Annonce("","",0,null,"",null,null,"");
+  @Output() backToList = new EventEmitter();
+
+  model: Annonce = new Annonce("","",0,null,"",null,null,"");
 
   constructor(private dataService: DataService) { }
 
@@ -36,6 +38,12 @@ export class AddAnnonceComponent implements OnInit {
         this.auteurs = utilisateurs;
       }
     );
+  }
+
+  posterAnnonce() {
+    this.dataService.addAnnonce(this.model)
+    .then(resObj=>console.log(JSON.stringify(resObj)));
+    this.backToList.emit();
   }
 
 }
