@@ -5,5 +5,5 @@
     </app-annonce>
 </ng-template>
 <ng-template *ngIf="this.addingNewAnnonce">
-
+    <app-add-annonce (backToList)="this.addingNewAnnonce = false"></app-add-annonce>
 </ng-template>

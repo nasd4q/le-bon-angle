@@ -3,22 +3,25 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 
+
 import { AppComponent } from './app.component';
 import { DataService } from 'src/service/data.service';
 import { ListAnnoncesComponent } from './list-annonces/list-annonces.component';
 import { AnnonceComponent } from './annonce/annonce.component';
 import { AuteurComponent } from './auteur/auteur.component';
+import { AddAnnonceComponent } from './add-annonce/add-annonce.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListAnnoncesComponent,
     AnnonceComponent,
-    AuteurComponent
+    AuteurComponent,
+    AddAnnonceComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

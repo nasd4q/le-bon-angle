@@ -1,0 +1,41 @@
+<div class="componentCont">
+
+    <h3>Nouvelle Annonce</h3>
+    <form #heroForm="ngForm">
+        <div>
+            <label for="titre">Titre</label>
+            <input type="text" class="form-control" id="titre" required [(ngModel)]="model.titre" name="titre"> TODO: remove this: {{model.titre}}
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" required>
+        </div>
+        <div>
+            <label for="prix">Prix</label>
+            <input type="number" class="form-control" id="prix" required>
+        </div>
+        <div>
+            <label for="lieu">Lieu</label>
+            <input type="text" class="form-control" id="lieu" required>
+        </div>
+
+        <div>
+            <label for="auteur">Auteur</label>
+            <select id="auteur" required>
+            <option *ngFor="let auteur of auteurs" [value]="auteur">{{auteur.pseudo}}</option>
+          </select>
+        </div>
+
+        <div>
+            <label for="categorie">Catégorie</label>
+            <select id="categorie" required>
+          <option *ngFor="let categorie of categories" [value]="categorie">{{categorie.nom}}</option>
+        </select>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-success">Submit</button>
+
+    </form>
+</div>

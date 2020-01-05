@@ -31,7 +31,7 @@ export class DataService {
   addAnnonce(a: Annonce): Promise<boolean> {
     return this.http.post<any>(this.url + '/annonces'
     + '?auteurId=' + a.auteur.id + '&categorieId=' + a.categorie.id,
-    {titre : a.titre, description: a.description, prix : a.prix, lieu : a.lieu, })
+    {titre : a.titre, description: a.description, prix : a.prix, lieu : a.lieu})
     .toPromise()
     .then(returnedObj => returnedObj.id.length > 0);
   }
@@ -76,6 +76,13 @@ export class DataService {
     .toPromise()
     .then(
       (value) => value.map(c => new Categorie(c.nom, c.id))
+    );
+  }
+  getUtilisateurs(): Promise<Utilisateur[]> {
+    return this.http.get<any[]>(this.url + '/utilisateurs')
+    .toPromise()
+    .then(
+      (value) => value.map(u => new Utilisateur(u.pseudo, u.telephone, u.email, u.id))
     );
   }
 }
