@@ -2,6 +2,7 @@ package com.nasd4q.leBonAngleAPI.controller;
 
 import com.nasd4q.leBonAngleAPI.repository.AnnonceRepository;
 import com.nasd4q.leBonAngleAPI.repository.CategorieRepository;
+import com.nasd4q.leBonAngleAPI.repository.PhotoRepository;
 import com.nasd4q.leBonAngleAPI.repository.UtilisateurRepository;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import javax.validation.Valid;
 import com.nasd4q.leBonAngleAPI.exception.ResourceNotFoundException;
 import com.nasd4q.leBonAngleAPI.model.Annonce;
 import com.nasd4q.leBonAngleAPI.model.Categorie;
+import com.nasd4q.leBonAngleAPI.model.Photo;
 import com.nasd4q.leBonAngleAPI.model.Utilisateur;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,8 @@ public class AnnonceController {
     UtilisateurRepository utilisateurRepository;
     @Autowired
     CategorieRepository categorieRepository;
+    @Autowired
+    PhotoRepository photoRepository;
 
 
     @GetMapping("/annonces")
@@ -80,6 +84,11 @@ public class AnnonceController {
     public ResponseEntity<?> deleteAnnonce(@PathVariable(value = "id") UUID annonceId) throws Exception {
         Annonce annonce = annonceRepository.findById(annonceId)
                 .orElseThrow(() -> new Exception("Annonce Not found for id " + annonceId));
+
+        List<Photo> photos = photoRepository.findByAnnonce_Id(annonceId);
+        for (Photo p : photos) {
+            photoRepository.delete(p);
+        }
 
         annonceRepository.delete(annonce);
 
