@@ -54,7 +54,7 @@ export class ListAnnoncesComponent implements OnInit {
     if (id === 'all') {
       this.annonces = this.allAnnonces;
     } else {
-    this.annonces = this.allAnnonces.filter(a => a.categorie.id === id);
+      this.annonces = this.allAnnonces.filter(a => a.categorie.id === id);
     }
   }
 

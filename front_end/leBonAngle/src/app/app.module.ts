@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DataViewModule} from 'primeng/dataview';
+
 
 
 import { AppComponent } from './app.component';
@@ -28,7 +31,9 @@ import { AddAuteurComponent } from './add-auteur/add-auteur.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    DataViewModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
