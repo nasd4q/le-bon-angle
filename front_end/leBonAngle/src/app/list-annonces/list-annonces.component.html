@@ -6,13 +6,15 @@
                   <option [value]="'all'">Catégories...</option>
                   <option *ngFor="let c of categories" [value]="c.id">{{c.nom}}</option>
                 </select>
-                <input placeholder="recherche..." (keyup)="onSearchChanged($event.target.value)">
+                <input type="search" pInputText placeholder="recherche..." (keyup)="onSearchChanged($event.target.value)">
                 <button (click)="this.newAnnonceClicked.emit()">Ajouter une annonce</button>
             </div>
         </p-header>
         <ng-template let-a pTemplate="listItem">
-            <div (click)="this.annonceClicked.emit(a)">
-                <img *ngIf="a.photosUrl.length>0" [src]="a.photosUrl[0]">
+            <div class="annonceItem" (click)="this.annonceClicked.emit(a)">
+                <div class="imgContainer">
+                    <img *ngIf="a.photosUrl.length>0" [src]="a.photosUrl[0]">
+                </div>
                 <div>
                     <h4>{{a.titre}}</h4>
                     <div>{{a.description}}</div>

@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+app-list-annonces {
+    p-header>div {
+        display: flex;
+    }
+    p-header>div>input {
+        margin: auto;
+    }
+    .annonceItem {
+        display: flex;
+        .imgContainer {
+            display: flex;
+            width: 50%;
+            height: 120px;
+        }
+        img {
+            max-height: 100%;
+            max-width: 100%;
+            margin: auto;
+            padding: 3%;
+        }
+    }
+}

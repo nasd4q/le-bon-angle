@@ -12,7 +12,7 @@ export class ListAnnoncesComponent implements OnInit {
   allAnnonces: Annonce[];
   annonces: Annonce[];
   categories: Categorie[];
-  testString : string = "testString of listAnnoncesComponent"
+  testString: string = 'testString of listAnnoncesComponent'
 
   @Output() annonceClicked = new EventEmitter();
   @Output() newAnnonceClicked = new EventEmitter();
@@ -65,5 +65,9 @@ export class ListAnnoncesComponent implements OnInit {
       a.description.includes(texteRecherche) ||
       a.titre.includes(texteRecherche) ||
       a.lieu.includes(texteRecherche));
-  }
+
+    document.title = texteRecherche;
+    }
+
+
 }
